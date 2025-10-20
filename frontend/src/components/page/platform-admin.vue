@@ -1,0 +1,308 @@
+<template>
+	<div class="admin-container">
+		<el-container>
+			<el-header height="60px" class="header-container">
+				<div class="header">
+					<div class="header-left">
+						<router-link to="/platform-admin" class="app-name">校园二手交易平台管理</router-link>
+					</div>
+					<div class="header-right">
+						<span class="admin-info">管理员：{{admin.nickname}}</span>
+						<el-button type="primary" size="small" @click="logout">退出登录</el-button>
+					</div>
+				</div>
+			</el-header>
+			<el-container class="main-container">
+				<el-aside width="200px">
+					<el-menu
+						:default-active="mode.toString()"
+						class="el-menu-vertical-demo"
+						@select="handleSelect"
+						background-color="#ffffff"
+						text-color="#303133"
+						active-text-color="#409EFF">
+						<el-menu-item index="1">
+							<i class="el-icon-goods"></i>
+							<span>闲置管理</span>
+						</el-menu-item>
+						<el-menu-item index="2">
+							<i class="el-icon-s-goods"></i>
+							<span slot="title">订单管理</span>
+						</el-menu-item>
+						<el-menu-item index="3">
+							<i class="el-icon-s-custom"></i>
+							<span slot="title">用户管理</span>
+						</el-menu-item>
+						<el-menu-item index="4">
+							<i class="el-icon-chat-dot-round"></i>
+							<span slot="title">留言管理</span>
+						</el-menu-item>
+						<el-menu-item index="5">
+							<i class="el-icon-data-analysis"></i>
+							<span slot="title">数据统计</span>
+						</el-menu-item>
+						<!-- 新增轮播图管理菜单项 -->
+						<el-menu-item index="6">
+							<i class="el-icon-picture-outline"></i>
+							<span slot="title">轮播图管理</span>
+						</el-menu-item>
+					</el-menu>
+				</el-aside>
+				<el-main>
+					<IdleGoods v-if="mode == 1"></IdleGoods>
+					<orderList v-if="mode == 2"></orderList>
+					<userList v-if="mode == 3"></userList>
+					<messageList v-if="mode == 4"></messageList>
+					<DataStatistics v-if="mode == 5"></DataStatistics>
+					<!-- 新增轮播图管理组件 -->
+					<BannerManagement v-if="mode == 6"></BannerManagement>
+			
+				</el-main>
+
+			</el-container>
+		</el-container>
+
+		<div class="spacer"></div>
+		<footer class="footer">
+			<app-foot></app-foot>
+		</footer>
+	</div>
+</template>
+
+<script>
+    import AppFoot from '../common/AppFoot.vue';
+    import IdleGoods from '../common/IdleGoods.vue';
+    import orderList from '../common/orderList.vue';
+    import userList from '../common/userList.vue';
+    import DataStatistics from '../common/DataStatistics.vue';
+	import messageList from '../common/messageList.vue';
+	// 引入轮播图管理组件
+	import BannerManagement from '../common/BannerManagement.vue';
+
+
+    export default {
+        name: "platform-admin",
+        components: {
+            AppFoot,
+            IdleGoods,
+            orderList,
+            userList,
+            DataStatistics,
+			messageList,
+			// 引入轮播图管理组件
+			BannerManagement,
+        },
+        data() {
+            return {
+                mode: 1,
+                admin: {
+                    nickname: '',
+                },
+            }
+        },
+        methods: {
+            logout() {
+                this.$api.loginOut({}).then(res => {
+                    if (res.status_code === 1) {
+                        this.$sta.isLogin = false;
+                        this.$sta.adminName = '';
+                        this.$router.push({path: '/login-admin'});
+                    }
+                }).catch(e => {
+                    console.log(e)
+                })
+            },
+            handleSelect(val) {
+                if (this.mode !== val) {
+                    this.mode = val;
+                }
+            },
+        },
+    }
+</script>
+
+<style scoped>
+	.admin-container {
+		display: flex;
+		/* flex-direction: column; */
+		min-height: 100vh;
+		background-color: #f6f6f6;
+		position: relative;
+		overflow: hidden;
+	}
+
+	.header-container {
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		background-color: #fff;
+		padding: 0;
+		box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+		z-index: 1000;
+		border-bottom: 1px solid #eaeaea;
+	}
+
+	.header {
+		height: 60px;
+		width: 100%;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 0 20px;
+		/* max-width: calc(100% - 40px); */
+		margin: 0 auto;
+	}
+
+	.header-left {
+		display: flex;
+		align-items: center;
+	}
+
+	.header-right {
+		display: flex;
+		align-items: center;
+		white-space: nowrap;
+		margin-right: 40px;
+	}
+
+	.admin-info {
+		margin-right: 20px;
+		font-size: 14px;
+		color: #606266;
+	}
+
+	.main-container {
+		padding-top: 60px;
+		flex: 1;
+		overflow: hidden;
+	}
+
+	.app-name {
+		color: #409EFF;
+		font-size: 18px;
+		font-weight: 800;
+		text-decoration: none;
+	}
+
+	.el-menu {
+		border-right: none;
+		height: 100%;
+		background-color: #ffffff !important;
+	}
+	.el-menu-item {
+		height: 56px;
+		line-height: 56px;
+		font-size: 14px;
+		transition: all 0.3s ease;
+		border-left: 3px solid transparent;
+	}
+
+	.el-menu-item:hover {
+		background-color: #f0f9ff !important;
+		border-left: 3px solid #409EFF;
+	}
+
+	.el-menu-item.is-active {
+		background-color: #ecf5ff !important;
+		border-left: 3px solid #409EFF;
+		font-weight: 500;
+	}
+
+	.el-menu-item i {
+		margin-right: 12px;
+		font-size: 18px;
+		color: #606266;
+	}
+
+	.el-menu-item.is-active i {
+		color: #409EFF;
+	}
+
+	.el-menu-item:hover i,
+	.el-menu-item.is-active:hover i {
+		color: #409EFF;
+	}
+
+
+
+
+
+	.el-main {
+		padding: 0;
+		background-color: #f6f6f6;
+		height: calc(100vh - 120px);
+		/* overflow-y: auto; */
+		scrollbar-width: none; /* Firefox */
+  		-ms-overflow-style: none; /* IE 10+ */
+	}
+
+	.el-main::-webkit-scrollbar {
+		display: none;	/* Chrome */
+	}
+
+	.el-aside {
+		background-color: #fff;
+		box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
+		height: calc(100vh - 60px);
+	}
+	
+	.spacer {
+		height: 60px; /* 为页脚留出空间 */
+	}
+
+	.footer {
+		position: absolute;
+		bottom: 0px;
+		left: 0;
+		right: 0;
+		background-color: #fff;
+		padding: 15px 0;
+		text-align: center;
+		border-top: 1px solid #e5e5e5;
+		/* height: 40px; */
+		z-index: 999;
+	}
+
+	/* 菜单项样式 */
+	.el-menu-item {
+		height: 56px;
+		line-height: 56px;
+		font-size: 14px;
+	}
+
+	.el-menu-item i {
+		margin-right: 10px;
+		font-size: 18px;
+	}
+
+	/* 适应小屏设备 */
+	@media screen and (max-width: 768px) {
+		.app-name {
+			font-size: 16px;
+		}
+		
+		.admin-info {
+			margin-right: 10px;
+			font-size: 13px;
+		}
+		
+		.el-aside {
+			width: 160px !important;
+		}
+		
+		.header {
+			padding: 0 10px;
+			max-width: calc(100% - 20px);
+		}
+		
+		.header-right {
+			margin-right: 10px;
+		}
+		
+		.header-right .el-button {
+			padding: 7px 10px;
+			font-size: 12px;
+		}
+	}
+</style>
