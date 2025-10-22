@@ -35,6 +35,7 @@ Vue.prototype.$globalData = globalData;
 /* 让它少提示一个错误信息 提示是什么环境*/
 Vue.config.productionTip = false;
 
+// 使用element-ui
 Vue.use(ElementUI, {
     size: 'medium'
 });
