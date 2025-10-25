@@ -2,10 +2,14 @@
     <div class="header">
         <div class="header-container">
             <div class="app-name">
-                <router-link to="/">
+                <!-- <router-link to="/">
                     <i class="el-icon-s-shop"></i>
                     校园跳蚤市场
-                </router-link>
+                </router-link> -->
+                <a @click="goBack" class="back-link">
+                    <i class="el-icon-s-shop"></i>
+                        校园跳蚤市场
+                </a>
             </div>
             <div class="search-container">
                 <el-input 
@@ -123,7 +127,21 @@
                     }
                 });
 
+            },
+            goBack(){
+                if (window.history.length <= 1) {
+                    // 如果没有历史记录，跳转到首页
+                    this.$router.push('/');
+                } else {
+                    // 否则返回上一页
+                    this.$router.back();
+                }
             }
+        },
+        // 添加类型声明
+        mounted() {
+            // 确保 $router 被正确注入
+            console.log('Router:', this.$router);
         }
     };
 </script>
