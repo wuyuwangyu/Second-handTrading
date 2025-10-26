@@ -1,10 +1,18 @@
 <template>
     <div id="app">
-        <keep-alive :include="['index']">
+        <!-- <keep-alive :include="['index', 'search']"> -->
             <router-view></router-view>
-        </keep-alive>
+        <!-- </keep-alive> -->
     </div>
 </template>
+
+<script>
+export default {
+    name: 'app',
+}
+
+</script>
+
 <style>
     html, body, #app{
         overflow: visible;
