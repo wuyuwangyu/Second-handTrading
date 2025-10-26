@@ -1,5 +1,6 @@
 <template>
     <div id="app">
+        <!-- keep-alive 缓存路由组件 -->
         <!-- <keep-alive :include="['index', 'search']"> -->
             <router-view></router-view>
         <!-- </keep-alive> -->
