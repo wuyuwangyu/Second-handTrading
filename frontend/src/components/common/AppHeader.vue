@@ -2,14 +2,14 @@
     <div class="header">
         <div class="header-container">
             <div class="app-name">
-                <!-- <router-link to="/">
+                <router-link to="/">
                     <i class="el-icon-s-shop"></i>
                     校园跳蚤市场
-                </router-link> -->
-                <a @click="goBack" class="back-link">
+                </router-link>
+                <!-- <a @click="()=>{$router.back()}" class="back-link">
                     <i class="el-icon-s-shop"></i>
                         校园跳蚤市场
-                </a>
+                </a> -->
             </div>
             <div class="search-container">
                 <el-input 
@@ -93,7 +93,12 @@
                         this.$router.go(0);
                     }
                 } else {
-                    this.$message.warning('请输入搜索关键词');
+                    // this.$message.warning('请输入搜索关键词');
+                    this.$message({
+                    message: '请输入搜索关键词',
+                    type: 'warning',
+                    duration: 1000 // 设置显示时间为1秒（单位为毫秒）
+                    });
                 }
             },
             toMe() {
@@ -117,6 +122,16 @@
                         this.$globalData.userInfo={};
                         console.log("login out");
                         this.$message.success('退出登录成功');
+
+                    
+                        // //强制刷新组件
+                        // this.$nextTick(()=>{
+                        //     this.nickname='登录';
+                        //     this.avatar='https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png';
+                        //     this.isLogin=false;
+                        // })
+
+                    
                         if ('/index' === this.$route.path) {
                             this.$router.go(0);
                         }else {
@@ -128,21 +143,16 @@
                 });
 
             },
-            goBack(){
-                if (window.history.length <= 1) {
-                    // 如果没有历史记录，跳转到首页
-                    this.$router.push('/');
-                } else {
-                    // 否则返回上一页
-                    this.$router.back();
-                }
-            }
+            // goBack(){
+            //     if (window.history.length <= 1) {
+            //         // 如果没有历史记录，跳转到首页
+            //         this.$router.push('/');
+            //     } else {
+            //         // 否则返回上一页
+            //         this.$router.back();
+            //     }
+            // }
         },
-        // 添加类型声明
-        mounted() {
-            // 确保 $router 被正确注入
-            console.log('Router:', this.$router);
-        }
     };
 </script>
 
