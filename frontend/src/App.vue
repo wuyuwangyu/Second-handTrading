@@ -1,9 +1,9 @@
 <template>
     <div id="app">
         <!-- keep-alive 缓存路由组件 -->
-        <!-- <keep-alive :include="['index', 'search']"> -->
+        <keep-alive :include="['index']" :exclude="['login', 'sign-in', 'login-admin']">
             <router-view></router-view>
-        <!-- </keep-alive> -->
+        </keep-alive>
     </div>
 </template>
 

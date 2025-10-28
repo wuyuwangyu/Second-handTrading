@@ -56,7 +56,10 @@
                         res.data.signInTime=res.data.signInTime.substring(0,10);
                         this.$globalData.userInfo = res.data;
                         this.$router.replace({path: '/index'});
-                    } else {
+                    
+                        // 登录成功后强制刷新页面
+                        window.location.reload();
+                      } else {
                         this.$message.error(res.msg);
                     }
                 });
