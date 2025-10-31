@@ -23,7 +23,7 @@ public class AliPayController {
 
 			/**
 			 *
-			 * AlipayTradePagePayResponse response = Factory.Payment.Page() .pay("惠民超市购物", payment.getOrderNo(), payment.getTotalPrice().toString() , returnUrl);
+			 * AlipayTradePagePayResponse response = Factory.Payment.Page() .pay("支付宝", payment.getOrderNo(), payment.getTotalPrice().toString() , returnUrl);
 			 * return ServerResponse.success(response.body);
 			 *
 			 */
