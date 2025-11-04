@@ -97,6 +97,7 @@ public class UserController {
         // if(userModel.getAccountNumber().length() != 11){
         //     return ResultVo.fail(ErrorMsg.EMAIL_LOGIN_ERROR);
         // }
+        // 使用正则验证待完善
         if (!userModel.getAccountNumber().matches("^1[3-9]\\d{9}$")) {
             return ResultVo.fail(ErrorMsg.PARAM_ERROR, "手机号格式不正确");
         }
