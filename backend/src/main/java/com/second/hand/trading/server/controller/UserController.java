@@ -93,9 +93,12 @@ public class UserController {
             return ResultVo.fail(ErrorMsg.EMAIL_LOGIN_ERROR);
         }
 
-        // 手机号长度不足11位
-        if(userModel.getAccountNumber().length() != 11){
-            return ResultVo.fail(ErrorMsg.EMAIL_LOGIN_ERROR);
+        // 手机号长度不足11位，以1开头，第二位是3-9之间的数字
+        // if(userModel.getAccountNumber().length() != 11){
+        //     return ResultVo.fail(ErrorMsg.EMAIL_LOGIN_ERROR);
+        // }
+        if (!userModel.getAccountNumber().matches("^1[3-9]\\d{9}$")) {
+            return ResultVo.fail(ErrorMsg.PARAM_ERROR, "手机号格式不正确");
         }
 
         if(userModel.getUserStatus()!=null&&userModel.getUserStatus().equals((byte) 1)){
