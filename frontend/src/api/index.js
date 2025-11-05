@@ -10,6 +10,7 @@ const api = {
             params: query
         });
     },
+    // 登出功能
     logout(query) {
         return request({
             url: '/user/logout',
@@ -17,6 +18,7 @@ const api = {
             params: query
         });
     },
+    // 注册功能
     signIn(data) {
         return request({
             url: '/user/sign-in',
@@ -24,6 +26,7 @@ const api = {
             data: data
         });
     },
+    // 获取用户信息功能
     getUserInfo(query) {
         return request({
             url: '/user/info',
@@ -31,6 +34,7 @@ const api = {
             params: query
         });
     },
+    // 修改用户信息功能
     updateUserPublicInfo(data) {
         return request({
             url: '/user/info',
@@ -38,6 +42,7 @@ const api = {
             data: data
         });
     },
+    // 修改密码功能
     updatePassword(query) {
         return request({
             url: '/user/password',
@@ -45,7 +50,7 @@ const api = {
             params: query
         });
     },
-    //  地址功能  对应addresscontroller
+    //  地址功能
     addAddress(data) {
         return request({
             url: '/address/add',
@@ -53,6 +58,7 @@ const api = {
             data: data
         });
     },
+    // 获取地址功能
     getAddress(query) {
         return request({
             url: '/address/info',
@@ -60,6 +66,7 @@ const api = {
             params: query
         });
     },
+    // 修改地址功能
     updateAddress(data) {
         return request({
             url: '/address/update',
@@ -67,6 +74,7 @@ const api = {
             data: data
         });
     },
+    // 删除地址功能
     deleteAddress(data) {
         return request({
             url: '/address/delete',
