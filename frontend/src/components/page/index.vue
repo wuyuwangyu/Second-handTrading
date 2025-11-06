@@ -205,7 +205,12 @@
                 this.$router.replace({query: {page: val,labelName:this.labelName}});
             
             
-                window.scrollTo(0,520)// 跳转到指定位置
+                // 平滑滚动到顶部
+                window.scrollTo({
+                    top: 500,
+                    left: 0,
+                    behavior: 'smooth'
+                });
             },
             toDetails(idle) {
                 this.$router.push({path: '/details', query: {id: idle.id}});
