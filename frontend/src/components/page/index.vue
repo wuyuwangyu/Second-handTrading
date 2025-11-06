@@ -203,6 +203,9 @@
             handleCurrentChange(val) {
                 console.log(`当前页: ${val}`);
                 this.$router.replace({query: {page: val,labelName:this.labelName}});
+            
+            
+                window.scrollTo(0,520)// 跳转到指定位置
             },
             toDetails(idle) {
                 this.$router.push({path: '/details', query: {id: idle.id}});
