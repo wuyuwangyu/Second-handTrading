@@ -2,6 +2,7 @@ import request from '../utils/request';
 
 const api = {
 
+    //js中query的隐式参数
     // 用户功能 对应usercontroller
     userLogin(query) {
         return request({
