@@ -13,6 +13,7 @@ module.exports = {
             })
         ]
     },
+    // 后端为8080端口，前端为8081端口，所以需要配置代理
     devServer: {
         port: 8081,
         proxy: {
