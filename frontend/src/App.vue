@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <!-- keep-alive 缓存路由组件 -->
+        <!-- keep-alive 缓存路由组件 （待优化性能） -->
         <keep-alive :include="['index']" :exclude="['login', 'sign-in', 'login-admin']">
             <router-view></router-view>
         </keep-alive>
