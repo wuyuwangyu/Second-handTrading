@@ -205,7 +205,7 @@
                 this.$router.replace({query: {page: val,labelName:this.labelName}});
             
             
-                // 平滑滚动到顶部
+                // 平滑滚动到顶部 抖动问题，暂时不处理（this.$nextTick）
                 window.scrollTo({
                     top: 500,
                     left: 0,
