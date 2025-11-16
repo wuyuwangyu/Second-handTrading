@@ -90,5 +90,18 @@ export default new Router({
         //         component: () => import('../components/page/details.vue')
         //     // 配置路由，2025.9.20
         // }
-    ]
+    ],
+
+    // 滚动行为
+    // to: 要跳转的页面对象
+    // from: 当前页面对象
+    // savedPosition: 如果页面有滚动条，savedPosition是记录的滚动条位置
+    // 如果没有保存的滚动条位置，savedPosition为null
+    scrollBehavior(to, from, savedPosition) {
+        if (savedPosition) {
+            return savedPosition
+        } else {
+            return { x: 0, y: 0 }
+        }
+    }
 });
