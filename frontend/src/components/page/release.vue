@@ -208,6 +208,9 @@
                     label: '图书笔记'
                 }, {
                     value: 5,
+                    label: '手办模玩'
+                },{
+                    value: 6,
                     label: '公告展示'
                 }],
                 imgList: [],
