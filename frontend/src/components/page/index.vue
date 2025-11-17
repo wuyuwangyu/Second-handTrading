@@ -43,7 +43,10 @@
                         <el-tab-pane label="图书笔记" name="4">
                             <i class="el-icon-notebook-2 tab-icon"></i> 图书笔记
                         </el-tab-pane>
-                        <el-tab-pane label="公告展示" name="5">
+                        <el-tab-pane label="手办模玩" name="5">
+                            <i class="el-icon-s-tools tab-icon"></i> 手办模玩
+                        </el-tab-pane>
+                        <el-tab-pane label="公告展示" name="6">
                             <i class="el-icon-bell tab-icon"></i> 公告展示
                         </el-tab-pane>
                     </el-tabs>
@@ -126,7 +129,8 @@
                     '2': '生活用品',
                     '3': '运动相关',
                     '4': '图书笔记',
-                    '5': '公告'
+                    '5': '手办模玩',
+                    '6': '公告'
                 },
                 bannerList:[]
             };
