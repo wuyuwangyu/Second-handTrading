@@ -25,7 +25,7 @@
                 </div>
 
                 
-                <!-- 分类标签 -->
+                <!-- 分类标签（待修改为后端传值） -->
                 <div class="category-tabs">
                     <el-tabs v-model="labelName" type="border-card" @tab-click="handleClick" class="custom-tabs">
                         <el-tab-pane label="全部" name="0">
