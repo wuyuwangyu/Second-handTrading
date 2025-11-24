@@ -97,8 +97,8 @@ public class UserController {
         // if(userModel.getAccountNumber().length() != 11){
         //     return ResultVo.fail(ErrorMsg.EMAIL_LOGIN_ERROR);
         // }
-        // 使用正则验证待完善
-        if (!userModel.getAccountNumber().matches("^1[3-9]\\d{9}$")) {
+        // (使用正则验证待完善)根据手机号正则验证
+        if (!userModel.getAccountNumber().matches("^^[1](([3][0-9])|([4][0,1,4-9])|([5][0-3,5-9])|([6][2,5,6,7])|([7][0-8])|([8][0-9])|([9][0-3,5-9]))[0-9]{8}$")) {
             return ResultVo.fail(ErrorMsg.PARAM_ERROR, "手机号格式不正确");
         }
 
