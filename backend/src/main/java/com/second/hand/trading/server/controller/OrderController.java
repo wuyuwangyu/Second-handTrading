@@ -59,6 +59,13 @@ public class OrderController {
                              @RequestBody OrderModel orderModel,
                              @RequestParam(value = "price",required = false) String price){
 
+
+
+
+
+
+
+
         if(orderModel.getPaymentStatus()!=null&&orderModel.getPaymentStatus().equals((byte) 1)){
             orderModel.setPaymentTime(new Date());
         }

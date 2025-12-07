@@ -25,7 +25,7 @@
                 </div>
 
                 
-                <!-- 分类标签（待修改为后端传值） -->
+                <!-- 分类标签 -->
                 <div class="category-tabs">
                     <el-tabs v-model="labelName" type="border-card" @tab-click="handleClick" class="custom-tabs">
                         <el-tab-pane label="全部" name="0">
@@ -49,6 +49,7 @@
                         <el-tab-pane label="公告展示" name="6">
                             <i class="el-icon-bell tab-icon"></i> 公告展示
                         </el-tab-pane>
+
                     </el-tabs>
                 </div>
 
@@ -207,14 +208,13 @@
             handleCurrentChange(val) {
                 console.log(`当前页: ${val}`);
                 this.$router.replace({query: {page: val,labelName:this.labelName}});
-            
-            
-                // 平滑滚动到顶部 抖动问题，暂时不处理（this.$nextTick）
-                window.scrollTo({
-                    top: 500,
-                    left: 0,
-                    behavior: 'smooth'
-                });
+                
+                   // 平滑滚动到顶部
+                    window.scrollTo({
+                        top: 500,
+                        left: 0,
+                        behavior: 'smooth'
+                    });
             },
             toDetails(idle) {
                 this.$router.push({path: '/details', query: {id: idle.id}});
@@ -440,7 +440,8 @@
     .item-card:hover .item-image {
         transform: scale(1.05);
     }
-    
+
+
     /* .item-tag {
         position: absolute;
         top: 10px;
@@ -581,6 +582,7 @@
         font-size: 14px;
         font-weight: 500;
     }
+
 
     /* 响应式调整 */
     @media (max-width: 768px) {

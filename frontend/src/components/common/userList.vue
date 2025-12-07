@@ -573,7 +573,7 @@
         padding: 25px;
         box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
         border-radius: 10px;
-        height: calc(100%v- 90px);
+        height: calc(100vh- 90px);
         display: flex;
         flex-direction: column;
     }

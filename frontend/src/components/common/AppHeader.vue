@@ -145,11 +145,11 @@
             },
             goBack(){
                 if (window.history.length <= 1) {
-                // 如果没有历史记录，跳转到首页
+                    // 如果没有历史记录，跳转到首页
                     this.$router.push('/');
                 } else {
-                // 否则返回上一页
-                this.$router.back();
+                    // 否则返回上一页
+                    this.$router.back();
                 }
             }
         },

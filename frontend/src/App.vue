@@ -1,6 +1,5 @@
 <template>
     <div id="app">
-        <!-- keep-alive 缓存路由组件 （待优化性能） -->
         <keep-alive :include="['index']" :exclude="['login', 'sign-in', 'login-admin']">
             <router-view></router-view>
         </keep-alive>
@@ -20,21 +19,10 @@ export default {
         background-color: #f6f6f6;
     }
 
-    /* 添加字体类型，美化页面 */
-    @font-face{
-        font-family: 'ArialRoundedMT';
-        src: url('@/assets/fonts/ARLRDBD.TTF') format('truetype');
-    }
-
-    @font-face{
-        font-family: 'RUIZIGONGFANGKABUQIN';
-        src: url('@/assets/fonts/RUIZIGONGFANGKABUQIN.TTF') format('truetype');
-    }
-
     /* 修改2003 */
     /* 全局字体和颜色 */
     body, html {
-        font-family: Arial, sans-serif, ArialRoundedMT, RUIZIGONGFANGKABUQIN;
+        font-family: Arial, sans-serif;
         background-color: #f5f7fa;
         color: #303133;
     }

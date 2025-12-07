@@ -53,14 +53,9 @@ public class MessageController {
                                   @NotNull(message = "登录异常 请重新登录")
                                   @NotEmpty(message = "登录异常 请重新登录") String shUserId,
                                   @RequestParam Long id){
-        Long userId = Long.valueOf(shUserId);
-       if(messageService.deleteMessage(id, userId)){ // 传递userId参数
-           return ResultVo.success();
-       }
-       return ResultVo.fail(ErrorMsg.SYSTEM_ERROR);
-        // if(messageService.deleteMessage(id)){
-        //     return ResultVo.success();
-        // }
+        if(messageService.deleteMessage(id)){
+            return ResultVo.success();
+        }
         return ResultVo.fail(ErrorMsg.SYSTEM_ERROR);
 //        Long userId = Long.valueOf(shUserId);
 //        if(messageService.deleteMessage(id, userId)){ // 传递userId参数

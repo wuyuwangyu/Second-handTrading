@@ -55,7 +55,8 @@ public class UserController {
 
         userModel.setSignInTime(new Timestamp(System.currentTimeMillis()));
         if (userModel.getAvatar() == null || "".equals(userModel.getAvatar())) {
-            userModel.setAvatar("https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png");
+             userModel.setAvatar("https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png");
+//             userModel.setAvatar("http://localhost:8080/xmtp/userImg.png");
         }
 
         if (userService.userSignIn(userModel)) {
@@ -93,13 +94,9 @@ public class UserController {
             return ResultVo.fail(ErrorMsg.EMAIL_LOGIN_ERROR);
         }
 
-        // 手机号长度不足11位，以1开头，第二位是3-9之间的数字
-        // if(userModel.getAccountNumber().length() != 11){
-        //     return ResultVo.fail(ErrorMsg.EMAIL_LOGIN_ERROR);
-        // }
-        // (使用正则验证待完善)根据手机号正则验证
-        if (!userModel.getAccountNumber().matches("^^[1](([3][0-9])|([4][0,1,4-9])|([5][0-3,5-9])|([6][2,5,6,7])|([7][0-8])|([8][0-9])|([9][0-3,5-9]))[0-9]{8}$")) {
-            return ResultVo.fail(ErrorMsg.PARAM_ERROR, "手机号格式不正确");
+        // 手机号长度不足11位
+        if(userModel.getAccountNumber().length() != 11){
+            return ResultVo.fail(ErrorMsg.EMAIL_LOGIN_ERROR);
         }
 
         if(userModel.getUserStatus()!=null&&userModel.getUserStatus().equals((byte) 1)){

@@ -35,7 +35,18 @@ public class AdminController {
     @Autowired
     private BannerService bannerService;
 
-    // 在登录方法中添加角色信息到session
+//    @GetMapping("login")
+//    public ResultVo login(@RequestParam("accountNumber") @NotNull @NotEmpty String accountNumber,
+//                          @RequestParam("adminPassword") @NotNull @NotEmpty String adminPassword,
+//                          HttpSession session){
+//        AdminModel adminModel=adminService.login(accountNumber,adminPassword);
+//        if (null == adminModel) {
+//            return ResultVo.fail(ErrorMsg.EMAIL_LOGIN_ERROR);
+//        }
+//        session.setAttribute("admin",adminModel);
+//        return ResultVo.success(adminModel);
+//    }
+// 在登录方法中添加角色信息到session
     @PostMapping("login")
     public ResultVo login(HttpSession session,
                           @RequestParam("accountNumber") @NotNull @NotEmpty String accountNumber,
@@ -48,15 +59,16 @@ public class AdminController {
         session.setAttribute("adminId", adminModel.getId());
         session.setAttribute("adminRole", adminModel.getRole()); // 保存角色信息
         return ResultVo.success(adminModel);
-    }   
+}
 
-    // 登出
+
+
     @GetMapping("loginOut")
     public ResultVo loginOut( HttpSession session){
         session.removeAttribute("admin");
         return ResultVo.success();
     }
-    // 获取管理员列表
+
     @GetMapping("list")
     public ResultVo getAdminList(HttpSession session,
                                  @RequestParam(value = "page",required = false) Integer page,
@@ -75,7 +87,18 @@ public class AdminController {
         return ResultVo.success(adminService.getAdminList(p,n));
     }
 
-    // 添加管理员
+//    @PostMapping("add")
+//    public ResultVo addAdmin(HttpSession session,
+//                             @RequestBody AdminModel adminModel){
+//        if(session.getAttribute("admin")==null){
+//            return ResultVo.fail(ErrorMsg.COOKIE_ERROR);
+//        }
+//        if(adminService.addAdmin(adminModel)){
+//            return ResultVo.success();
+//        }
+//        return ResultVo.fail(ErrorMsg.PARAM_ERROR);
+//    }
+
     @PostMapping("/admin/add")
     public ResultVo<Boolean> addAdmin(@RequestAttribute("adminRole") Byte adminRole,
                                       @RequestBody AdminModel adminModel) {
@@ -94,8 +117,7 @@ public class AdminController {
     }
 
 
-    // @DeleteMapping("/admin/delete/{id}")
-    // 删除管理员
+//    @DeleteMapping("/admin/delete/{id}")
     @GetMapping("/admin/delete/{id}")
     public ResultVo<Boolean> deleteAdmin(@RequestAttribute("adminRole") Byte adminRole,
                                          @PathVariable Long id,
@@ -120,7 +142,6 @@ public class AdminController {
     }
 
 
-    // 获取闲置物品列表
     @GetMapping("idleList")
     public ResultVo idleList(HttpSession session,
                              @RequestParam("status") @NotNull @NotEmpty Integer status,

@@ -18,7 +18,7 @@ module.exports = {
         port: 8081,
         proxy: {
             '/api': {
-                target: 'http://localhost:8080',//代理8080，后端为8081和9090
+                target: 'http://localhost:8080',
                 changeOrigin: true,
                 pathRewrite: {
                     '/api': ''
