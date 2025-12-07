@@ -1,0 +1,26 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.text-ellipsis-2 {
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}
+
+.van-nav-bar .van-nav-bar__arrow {
+  color: #333;
+}
+
+.van-nav-bar img {
+  image-rendering: -webkit-optimize-contrast;
+}
+
+button,
+input {
+  font-family: PingFang SC, Source Han Sans CN, Microsoft YaHei, Heiti SC, tahoma, arial, Hiragino Sans GB, 宋体, sans-serif;
+}
